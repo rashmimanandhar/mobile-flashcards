@@ -60,3 +60,8 @@ buck-out/
 
 # Expo
 .expo/*
+ios/*
+android/*
+
+.expo-shared
+
