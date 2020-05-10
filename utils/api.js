@@ -1,7 +1,7 @@
-import decks from './_DATA';
-import AsyncStorage from "react-native";
+import {decks} from './_DATA';
+import {AsyncStorage} from "react-native";
 
-const DECKS_STORAGE_KEY = "mobile-flashcards"
+const DECKS_STORAGE_KEY = "mobileFlashcards:decks"
 
 export async function getDecks() {
   try {
@@ -10,6 +10,7 @@ export async function getDecks() {
     if (decksFromStorage === null) {
       AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
     }
+    console.log(decks);
     return decksFromStorage === null ? decks : decksFromStorage;
 
   } catch (e) {
