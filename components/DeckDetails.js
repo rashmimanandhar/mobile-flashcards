@@ -9,7 +9,7 @@ export class DeckDetails extends Component {
     return (
       <View style={styles.container}>
         <Deck/>
-        <View>
+        <View style={styles.container}>
           <Button
             btnStyle={{backgroundColor: 'white'}}
             btnTextStyle={{color: 'black'}}
@@ -38,5 +38,8 @@ export class DeckDetails extends Component {
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+  }
+})
 export default DeckDetails;
