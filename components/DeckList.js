@@ -1,18 +1,39 @@
-import React, { Component } from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {Component} from 'react';
+import {TouchableOpacity, View} from 'react-native';
 import Deck from './Deck';
+import {connect} from "react-redux";
+import {handleInitialData} from "../actions/index";
+
 
 export class DeckList extends Component {
+  componentDidMount() {
+    this.props.handleInitialData();
+  }
+
   render() {
-    const {navigation} = this.props;
-    return(
+    const {decks, navigation} = this.props;
+    console.log(decks,"rashmi");
+    return (
       <View>
-        <TouchableOpacity onPress={() => navigation.push('DeckDetails')}>
-          <Deck />
-        </TouchableOpacity>
+        {Object.values(decks).map(deck => {
+          return (
+            <TouchableOpacity
+              key={deck.title}
+              onPress={() => navigation.push('DeckDetails')}>
+              <Deck deck={deck}/>
+            </TouchableOpacity>
+          )
+        })}
+
       </View>
     )
   }
 }
 
-export default DeckList;
+function mapStateToProps(decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps, {handleInitialData})(DeckList);
