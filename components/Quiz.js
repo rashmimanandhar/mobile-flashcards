@@ -5,7 +5,7 @@ import Button from "./Button";
 
 export class Quiz extends Component {
   state = {
-    screen: ''
+    screen: 'Question'
   }
 
   render() {

@@ -6,6 +6,7 @@ import TextButton from "./TextButton";
 
 export class DeckDetails extends Component {
   render() {
+    const {navigation} = this.props;
     return (
       <View style={styles.container}>
         <Deck/>
@@ -13,7 +14,7 @@ export class DeckDetails extends Component {
           <Button
             btnStyle={{backgroundColor: 'white'}}
             btnTextStyle={{color: 'black'}}
-            onPress={() => console.log("card added")}
+            onPress={() => navigation.push('AddCard')}
           >
             Add Card
           </Button>
@@ -21,7 +22,7 @@ export class DeckDetails extends Component {
           <Button
             btnStyle={{backgroundColor: 'red'}}
             btnTextStyle={{color: 'white'}}
-            onPress={() => console.log("quiz started")}
+            onPress={() => navigation.push('Quiz')}
           >
             Start Quiz
           </Button>

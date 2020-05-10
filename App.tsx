@@ -4,9 +4,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from "@react-navigation/stack";
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
-
 import DeckDetails from './components/DeckDetails';
 import AddCard from './components/AddCard';
+import Quiz from './components/Quiz';
+
 import Constants from 'expo-constants';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
@@ -22,7 +23,7 @@ function MobiFlashCardStatusBar({backgroundColor, ...props}) {
 
 const AppStack = createStackNavigator();
 const Tabs = (Platform.OS === 'ios') ? createBottomTabNavigator() : createMaterialTopTabNavigator();
-const mytabs = () => (
+const MyTabs = () => (
   <Tabs.Navigator>
     <Tabs.Screen name="Deck List" component={DeckList}/>
     <Tabs.Screen name="Add Deck" component={AddDeck}/>
@@ -36,9 +37,10 @@ export default function App() {
           barStyle="light-content"
         />
         <AppStack.Navigator>
-          <AppStack.Screen name="DeckList" component={mytabs} options={{title: "Deck List", headerShown: false}}/>
+          <AppStack.Screen name="DeckList" component={MyTabs} options={{title: "Deck List", headerShown: false}}/>
           <AppStack.Screen name="DeckDetails" component={DeckDetails} options={{title: "Deck Details"}}/>
           <AppStack.Screen name="AddCard" component={AddCard} options={{title: "Add Card"}}/>
+          <AppStack.Screen name="Quiz" component={Quiz} options={{title: "Quiz"}}/>
         </AppStack.Navigator>
       </NavigationContainer>
   );

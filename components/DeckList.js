@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import Deck from './Deck';
 
 export class DeckList extends Component {
   render() {
+    const {navigation} = this.props;
     return(
       <View>
-        <Deck/>
-        <Deck/>
-        <Deck/>
-        <Deck/>
+        <TouchableOpacity onPress={() => navigation.push('DeckDetails')}>
+          <Deck />
+        </TouchableOpacity>
       </View>
     )
   }
