@@ -11,8 +11,17 @@ import Quiz from './components/Quiz';
 import Constants from 'expo-constants';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
-import {Provider} from "react-native-paper";
 
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import {Provider} from 'react-redux';
+import reducer from './reducers/index';
+
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk, logger)
+)
 function MobiFlashCardStatusBar({backgroundColor, ...props}) {
   return (
     <View style={{backgroundColor, height: Constants.statusBarHeight}}>
@@ -31,6 +40,7 @@ const MyTabs = () => (
 );
 export default function App() {
   return (
+    <Provider store={store}>
       <NavigationContainer>
         <MobiFlashCardStatusBar
           backgroundColor='purple'
@@ -43,6 +53,7 @@ export default function App() {
           <AppStack.Screen name="Quiz" component={Quiz} options={{title: "Quiz"}}/>
         </AppStack.Navigator>
       </NavigationContainer>
+    </Provider>
   );
 }
 
