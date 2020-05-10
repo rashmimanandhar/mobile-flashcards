@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import TextButton from "./TextButton";
+import Button from './Button';
 
 export class AddDeck extends Component {
   state = {
@@ -20,14 +20,14 @@ export class AddDeck extends Component {
         <View style={styles.contentBox}>
           <TextInput style={styles.input} value={this.state.title} onChangeText={this.handleChange}/>
         </View>
-        <TextButton
+        <Button
           btnStyle={{backgroundColor: 'gray'}}
           onPress={() => {
             console.log("pressed")
           }}
         >
           Create Deck
-        </TextButton>
+        </Button>
 
       </View>
     )
