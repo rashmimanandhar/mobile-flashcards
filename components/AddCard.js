@@ -20,7 +20,7 @@ export class AddCard extends Component {
 
   handleOnSubmit = () => {
     const {dispatch, route, navigation} = this.props;
-    const title = route.params.title
+    const title = route.params.title;
     const card = {
       question: this.state.question,
       answer: this.state.answer

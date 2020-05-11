@@ -59,7 +59,7 @@ export class Quiz extends Component {
               </View>
               <View style={[styles.block, styles.questionContainer]}>
                 <Text style={styles.questionText}>
-                  {screen === screen.question ? 'Question' : 'Answer'}
+                  {screen === screen.Question ? 'Question' : 'Answer'}
                 </Text>
                 <View style={styles.questionWrapper}>
                   <Text style={styles.title}>

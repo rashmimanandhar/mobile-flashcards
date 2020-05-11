@@ -16,6 +16,7 @@ export default function decks(state = {}, action) {
         }
       }
     case REMOVE_DECK:
+
       //https://stackoverflow.com/questions/34401098/remove-a-property-in-an-object-immutably
       const { title } = action;
       const { [title]: value, ...remainingDecks } = state;
@@ -25,7 +26,7 @@ export default function decks(state = {}, action) {
         ...state,
         [action.title] : {
           ...state[action.title],
-          questions: [...state[action.title].questions].concat(action.card)
+          questions: state[action.title].questions.concat(action.card)
         }
       }
     default:

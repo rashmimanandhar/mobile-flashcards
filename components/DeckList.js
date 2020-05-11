@@ -21,7 +21,7 @@ export class DeckList extends Component {
             <TouchableOpacity
               key={deck.title}
               onPress={() => navigation.push('DeckDetails', {
-                deck: {deck}
+                title: deck.title
               })}>
               <Deck deck={deck}/>
             </TouchableOpacity>

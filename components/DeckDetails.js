@@ -17,10 +17,10 @@ export class DeckDetails extends Component {
     navigation.goBack();
   }
   render() {
-    const {navigation, route, dispatch} = this.props;
+    const {navigation, route, dispatch, decks} = this.props;
 
-    const deck = route.params.deck.deck
-    const deckTitle = deck['title']
+    const deckTitle = route.params.title;
+    const deck = decks[deckTitle];
     return (
       <View style={styles.container}>
         <Deck deck={deck}/>
@@ -29,7 +29,7 @@ export class DeckDetails extends Component {
             btnStyle={{backgroundColor: 'white'}}
             btnTextStyle={{color: 'black'}}
             onPress={() => navigation.push('AddCard', {
-              title: {deckTitle}
+              title: deckTitle
             })}>
           >
             Add Card
@@ -61,4 +61,10 @@ const styles = StyleSheet.create({
   container: {
   }
 })
-export default connect()(DeckDetails);
+
+function mapStateToProps(decks) {
+  return {
+    decks
+  }
+}
+export default connect(mapStateToProps)(DeckDetails);
