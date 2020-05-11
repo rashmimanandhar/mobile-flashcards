@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import Button from './Button';
+import {connect} from "react-redux";
+import {addDeck} from "../actions/index";
 
 export class AddDeck extends Component {
   state = {
@@ -9,6 +11,13 @@ export class AddDeck extends Component {
 
   handleChange = (text) => {
     this.setState({title: text})
+  }
+
+  handleOnSubmit = () => {
+    const {dispatch, navigation} = this.props;
+    dispatch(addDeck(this.state.title))
+    this.setState({title:''})
+    navigation.goBack();
   }
 
   render() {
@@ -22,9 +31,7 @@ export class AddDeck extends Component {
         </View>
         <Button
           btnStyle={{backgroundColor: 'gray'}}
-          onPress={() => {
-            console.log("pressed")
-          }}
+          onPress={this.handleOnSubmit}
         >
           Create Deck
         </Button>
@@ -58,4 +65,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default AddDeck;
+export default connect()(AddDeck);

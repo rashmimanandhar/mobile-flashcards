@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import Deck from "./Deck";
 import Button from "./Button";
 import TextButton from "./TextButton";
+import {connect} from "react-redux";
 
 export class DeckDetails extends Component {
   render() {
@@ -44,4 +45,4 @@ const styles = StyleSheet.create({
   container: {
   }
 })
-export default DeckDetails;
+export default connect()(DeckDetails);

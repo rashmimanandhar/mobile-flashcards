@@ -7,7 +7,8 @@ import {handleInitialData} from "../actions/index";
 
 export class DeckList extends Component {
   componentDidMount() {
-    this.props.handleInitialData();
+    const {dispatch} = this.props;
+    dispatch(handleInitialData());
   }
 
   render() {
@@ -38,4 +39,4 @@ function mapStateToProps(decks) {
   }
 }
 
-export default connect(mapStateToProps, {handleInitialData})(DeckList);
+export default connect(mapStateToProps)(DeckList);
