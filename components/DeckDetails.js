@@ -1,14 +1,26 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Deck from "./Deck";
 import Button from "./Button";
 import TextButton from "./TextButton";
 import {connect} from "react-redux";
+import {removeDeck} from "../actions/index";
+import {deleteDeck} from "../utils/api";
 
 export class DeckDetails extends Component {
+  handleOnDelete =(title) =>{
+    const {navigation, dispatch} = this.props;
+    dispatch(removeDeck(title));
+    deleteDeck(title).then(() =>{
+
+    });
+    navigation.goBack();
+  }
   render() {
-    const {navigation, route} = this.props;
+    const {navigation, route, dispatch} = this.props;
+
     const deck = route.params.deck.deck
+    const deckTitle = deck['title']
     return (
       <View style={styles.container}>
         <Deck deck={deck}/>
@@ -16,7 +28,9 @@ export class DeckDetails extends Component {
           <Button
             btnStyle={{backgroundColor: 'white'}}
             btnTextStyle={{color: 'black'}}
-            onPress={() => navigation.push('AddCard')}
+            onPress={() => navigation.push('AddCard', {
+              title: {deckTitle}
+            })}>
           >
             Add Card
           </Button>
@@ -24,14 +38,16 @@ export class DeckDetails extends Component {
           <Button
             btnStyle={{backgroundColor: 'red'}}
             btnTextStyle={{color: 'white'}}
-            onPress={() => navigation.push('Quiz')}
+            onPress={() => navigation.push('Quiz', {
+              title: {deckTitle}
+            })}
           >
             Start Quiz
           </Button>
 
           <TextButton
             btnTextStyle={{color: 'red'}}
-            onPress={() => console.log("delete deck")}
+            onPress={() => this.handleOnDelete(deck.title)}
           >
             Delete Deck
           </TextButton>

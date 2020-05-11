@@ -10,7 +10,6 @@ export async function getDecks() {
     if (decksFromStorage === null) {
       AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
     }
-    console.log(decksFromStorage);
     return decksFromStorage === null ? decks : JSON.parse(decksFromStorage);
 
   } catch (e) {
@@ -60,7 +59,7 @@ export async function addCardToDeck(title, card) {
   }
 }
 
-export async function removeDeck(title) {
+export async function deleteDeck(title) {
   try {
     const decksFromStorage = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
     const decks = JSON.parse(decksFromStorage);

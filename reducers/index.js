@@ -16,8 +16,9 @@ export default function decks(state = {}, action) {
         }
       }
     case REMOVE_DECK:
-      let remainingDeck = state.decks.filter((deck) => {return deck.title !== action.title});
+      let remainingDeck = Object.entries(state).filter((deck) => {return deck.title !== action.title});
       return{
+        ...state,
         remainingDeck
       }
     case ADD_CARD:

@@ -3,6 +3,7 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 import Button from './Button';
 import {connect} from "react-redux";
 import {addDeck} from "../actions/index";
+import {saveDeckTitle} from "../utils/api";
 
 export class AddDeck extends Component {
   state = {
@@ -15,8 +16,12 @@ export class AddDeck extends Component {
 
   handleOnSubmit = () => {
     const {dispatch, navigation} = this.props;
-    dispatch(addDeck(this.state.title))
-    this.setState({title:''})
+    dispatch(addDeck(this.state.title));
+
+    saveDeckTitle(this.state.title).then(() => {
+      console.log(this.state.title);
+    });
+    this.setState({title: ''})
     navigation.goBack();
   }
 
@@ -32,6 +37,7 @@ export class AddDeck extends Component {
         <Button
           btnStyle={{backgroundColor: 'gray'}}
           onPress={this.handleOnSubmit}
+          disabled={this.state.title === ''}
         >
           Create Deck
         </Button>
@@ -42,9 +48,7 @@ export class AddDeck extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-
-  },
+  container: {},
   contentBox: {
     marginBottom: 20
   },

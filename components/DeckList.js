@@ -13,7 +13,6 @@ export class DeckList extends Component {
 
   render() {
     const {decks, navigation} = this.props;
-    console.log(decks,"rashmi");
     return (
       <View>
         {Object.values(decks).map(deck => {

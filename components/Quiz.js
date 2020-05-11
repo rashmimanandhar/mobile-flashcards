@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import TextButton from "./TextButton";
 import Button from "./Button";
+import {connect} from "react-redux";
 
 export class Quiz extends Component {
   state = {
@@ -9,6 +10,8 @@ export class Quiz extends Component {
   }
 
   render() {
+    const {dispatch, route, navigation} = this.props;
+    const title = route.params.title
     switch (this.state.screen) {
       case "Question":
         return (
@@ -75,4 +78,4 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
-export default Quiz;
+export default connect()(Quiz);

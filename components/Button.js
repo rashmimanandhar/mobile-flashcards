@@ -8,7 +8,7 @@ export default function Button({children, onPress, btnStyle= {}, btnTextStyle = 
   const disabledButtonText = disabled ?  styles.btnDisabledText : {};
   return(
     <View style={[styles.btnContainer]}>
-      <TouchableOpacity style={[styles.btn, btnStyle, disabledButton]} onPress={onPress}>
+      <TouchableOpacity style={[styles.btn, btnStyle, disabledButton]} onPress={onPress} disabled={disabled}>
         <Text style={[styles.btnText, btnTextStyle, disabledButtonText]}>{children}</Text>
       </TouchableOpacity>
     </View>

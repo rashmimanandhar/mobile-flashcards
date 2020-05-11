@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Text, TextInput} from 'react-native';
 import Button from "./Button";
-import {exp} from "react-native-reanimated";
+import {addCardToDeck} from "../utils/api";
+import {connect} from "react-redux";
+import {addCard} from "../actions";
 
 export class AddCard extends Component {
   state = {
@@ -16,6 +18,19 @@ export class AddCard extends Component {
     this.setState({answer: answer});
   }
 
+  handleOnSubmit = () => {
+    const {dispatch, route, navigation} = this.props;
+    const title = route.params.title
+    const card = {
+      question: this.state.question,
+      answer: this.state.answer
+    }
+
+    dispatch(addCard(title, card));
+    addCardToDeck(title, card);
+    this.setState({ question: '', answer: '' });
+    navigation.goBack();
+  }
   render() {
     return(
       <View style={[styles.container]}>
@@ -31,9 +46,8 @@ export class AddCard extends Component {
         </View>
         <Button
           btnStyle={{backgroundColor: 'blue'}}
-          onPress={() => {
-            console.log("card added")
-          }}
+          onPress={this.handleOnSubmit}
+          disabled={this.state.question === '' || this.state.answer === ''}
         >
           Submit
         </Button>
@@ -66,4 +80,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default AddCard;
+export default connect()(AddCard);
