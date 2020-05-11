@@ -24,7 +24,8 @@ export default function decks(state = {}, action) {
       return {
         ...state,
         [action.title] : {
-          questions: action.card
+          ...state[action.title],
+          questions: [...state[action.title].questions].concat(action.card)
         }
       }
     default:

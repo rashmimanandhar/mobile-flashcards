@@ -39,7 +39,7 @@ export class DeckDetails extends Component {
             btnStyle={{backgroundColor: 'red'}}
             btnTextStyle={{color: 'white'}}
             onPress={() => navigation.push('Quiz', {
-              title: {deckTitle}
+              deck: {deck}
             })}
           >
             Start Quiz
