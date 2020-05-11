@@ -7,13 +7,13 @@ import {connect} from "react-redux";
 import {red, white} from "../utils/colors";
 import {green} from "color-name";
 
-const screen = {
+const SCREEN = {
   Question: 'Question',
   Answer: 'Answer',
   Result: 'Result'
 }
 
-const answer = {
+const ANSWER = {
   Correct: 'Correct',
   Incorrect: 'Incorrect'
 }
@@ -21,7 +21,7 @@ const answer = {
 export class Quiz extends Component {
   viewPager = React.createRef();
   state = {
-    currentView: screen.Question,
+    currentView: SCREEN.Question,
     correct: 0,
     incorrect: 0,
     questionNum: 0,
@@ -36,8 +36,18 @@ export class Quiz extends Component {
   }
 
 
-  handleAnswer = (answer) => {
+  handleAnswer = (ans) => {
+    if(ans === ANSWER.Correct){
+      this.setState({correct: this.state.correct + 1})
+    } else{
+      this.setState({incorrect: this.state.incorrect + 1})
+    }
     this.move();
+  }
+
+  reset = () => {
+    this.setState({correct:0, incorrect: 0, page: 0});
+    this.viewPager.current.setPage(0);
   }
   render() {
 
@@ -52,34 +62,29 @@ export class Quiz extends Component {
         <ViewPager ref={this.viewPager} style={styles.viewPage} initialPage={0} scrollEnabled={false}>
           {questions.map((question, index) => (
             <View style={styles.pageStyle} key={index}>
-              <View style={styles.block}>
-                <Text style={styles.count}>
-                  {index + 1} / {questions.length}
-                </Text>
-              </View>
               <View style={[styles.block, styles.questionContainer]}>
                 <Text style={styles.questionText}>
-                  {screen === screen.Question ? 'Question' : 'Answer'}
+                  {currentView === SCREEN.Question ? 'Question' : 'Answer'} {index + 1} / {questions.length}
                 </Text>
                 <View style={styles.questionWrapper}>
                   <Text style={styles.title}>
-                    {currentView === screen.Question
+                    {currentView === SCREEN.Question
                       ? question.question
                       : question.answer}
                   </Text>
                 </View>
               </View>
-              {currentView === screen.Question ? (
+              {currentView === SCREEN.Question ? (
                 <TextButton
                   txtStyle={{color: red}}
-                  onPress={() => this.setState({currentView: screen.Answer})}
+                  onPress={() => this.setState({currentView: SCREEN.Answer})}
                 >
                   Answer
                 </TextButton>
               ) : (
                 <TextButton
                   txtStyle={{color: red}}
-                  onPress={() => this.setState({currentView: screen.Question})}
+                  onPress={() => this.setState({currentView: SCREEN.Question})}
                 >
                   Question
                 </TextButton>
@@ -87,15 +92,13 @@ export class Quiz extends Component {
               <View>
                 <Button
                   btnStyle={{backgroundColor: green, borderColor: white}}
-                  onPress={() => this.handleAnswer(answer.Correct)}
-                  // disabled={this.state.answered[index] === 1}
+                  onPress={() => this.handleAnswer(ANSWER.Correct)}
                 >
                   Correct
                 </Button>
                 <Button
                   btnStyle={{backgroundColor: red, borderColor: white}}
-                  onPress={() => this.handleAnswer(answer.Incorrect)}
-                  // disabled={this.state.answered[index] === 1}
+                  onPress={() => this.handleAnswer(ANSWER.Incorrect)}
                 >
                   Incorrect
                 </Button>
@@ -108,9 +111,18 @@ export class Quiz extends Component {
               <Text style={styles.title}>Quiz Complete</Text>
             </View>
             <View style={styles.contentBox}>
-              <Text style={[styles]}>Number of questions answered correctly</Text>
-              <Text style={[styles.number]}>5</Text>
+              <Text style={[styles]}>Correct Answers</Text>
+              <Text style={[styles.number]}>{this.state.correct} ({this.state.correct/questions.length*100}%)</Text>
             </View>
+            <View style={styles.contentBox}>
+              <Text style={[styles]}>Incorrect Answers</Text>
+              <Text style={[styles.number]}>{this.state.incorrect} ({this.state.incorrect/questions.length*100}%)</Text>
+            </View>
+            <Button
+              btnStyle={{backgroundColor: red, borderColor: white}}
+              onPress={() => this.reset()}>
+              Start Over
+            </Button>
           </View>
         </ViewPager>
       </View>
