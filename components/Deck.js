@@ -3,7 +3,6 @@ import {StyleSheet, Text, View} from "react-native";
 
 const Deck = (props) => {
   const {deck} = props;
-  console.log(deck);
   return (
     deck === undefined ?
       <View style={styles.deckContainer}/>

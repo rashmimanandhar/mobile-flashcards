@@ -19,7 +19,6 @@ export class AddDeck extends Component {
     dispatch(addDeck(this.state.title));
 
     saveDeckTitle(this.state.title).then(() => {
-      console.log(this.state.title);
     });
     this.setState({title: ''})
     navigation.goBack();

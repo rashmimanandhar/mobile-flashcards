@@ -16,16 +16,15 @@ export default function decks(state = {}, action) {
         }
       }
     case REMOVE_DECK:
-      let remainingDeck = Object.entries(state).filter((deck) => {return deck.title !== action.title});
-      return{
-        ...state,
-        remainingDeck
-      }
+      //https://stackoverflow.com/questions/34401098/remove-a-property-in-an-object-immutably
+      const { title } = action;
+      const { [title]: value, ...remainingDecks } = state;
+      return remainingDecks;
     case ADD_CARD:
       return {
         ...state,
         [action.title] : {
-          questions: [...state[action.title].questions].concat(action.card)
+          questions: action.card
         }
       }
     default:
