@@ -6,10 +6,11 @@ import TextButton from "./TextButton";
 
 export class DeckDetails extends Component {
   render() {
-    const {navigation} = this.props;
+    const {navigation, route} = this.props;
+    const deck = route.params.deck.deck
     return (
       <View style={styles.container}>
-        <Deck/>
+        <Deck deck={deck}/>
         <View style={styles.container}>
           <Button
             btnStyle={{backgroundColor: 'white'}}
