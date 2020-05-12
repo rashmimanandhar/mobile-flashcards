@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import Deck from "./Deck";
 import Button from "./Button";
 import TextButton from "./TextButton";
@@ -11,10 +11,11 @@ import {green, red, white} from "../utils/colors";
 export class DeckDetails extends Component {
   handleOnDelete = (title) => {
     const {navigation, dispatch} = this.props;
-    dispatch(removeDeck(title));
-    deleteDeck(title).then(() => {
 
+    deleteDeck(title).then(() => {
     });
+    dispatch(removeDeck(title));
+
     navigation.goBack();
   }
 
@@ -23,7 +24,14 @@ export class DeckDetails extends Component {
 
     const deckTitle = route.params.title;
     const deck = decks[deckTitle];
+    if(deck === undefined){
+      return(<View>
+        <Text>Deleted</Text>
+      </View>);
+
+    }
     return (
+
       <View style={styles.container}>
         <Deck deck={deck}/>
         <View style={styles.container}>
