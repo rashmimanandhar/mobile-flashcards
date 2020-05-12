@@ -17,6 +17,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import {Provider} from 'react-redux';
 import reducer from './reducers/index';
+import {red, white, green} from "./utils/colors";
 
 const store = createStore(
   reducer,
@@ -38,16 +39,17 @@ const MyTabs = () => (
     <Tabs.Screen name="Add Deck" component={AddDeck}/>
   </Tabs.Navigator>
 );
+
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
         <MobiFlashCardStatusBar
-          backgroundColor='purple'
+          backgroundColor= {green}
           barStyle="light-content"
         />
         <AppStack.Navigator>
-          <AppStack.Screen name="DeckList" component={MyTabs} options={{title: "Deck List", headerShown: false}}/>
+          <AppStack.Screen name="DeckList" component={MyTabs} options={{title: "Decks List", headerShown: false}}/>
           <AppStack.Screen name="DeckDetails" component={DeckDetails} options={{title: "Deck Details"}}/>
           <AppStack.Screen name="AddCard" component={AddCard} options={{title: "Add Card"}}/>
           <AppStack.Screen name="Quiz" component={Quiz} options={{title: "Quiz"}}/>
@@ -57,11 +59,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

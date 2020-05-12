@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import Deck from './Deck';
 import {connect} from "react-redux";
 import {handleInitialData} from "../actions/index";
+import {backgroundGrey, green} from "../utils/colors";
 
 
 export class DeckList extends Component {
@@ -13,12 +14,10 @@ export class DeckList extends Component {
 
   render() {
     const {decks, navigation} = this.props;
-    console.log(Object.keys(decks).length)
-
     return (
       (Object.keys(decks).length === 0) ?
-        <View style={{flex:1}}>
-          <Text>Currently you don't have any decks. Please add your first deck by clicking on `Add Deck`</Text>
+        <View style={styles.noDecksContainer}>
+          <Text style={styles.noDecks}>Currently you don't have any decks. Please add your first deck by clicking on `Add Deck`</Text>
         </View>
         :
         <View>
@@ -38,6 +37,24 @@ export class DeckList extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  noDecks: {
+    fontSize: 20,
+    color: green,
+    backgroundColor: backgroundGrey,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 50,
+    margin:10
+  },
+  noDecksContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+
+})
 
 function mapStateToProps(decks) {
   return {

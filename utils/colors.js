@@ -10,3 +10,7 @@ export const orange = '#f26f28'
 export const blue = '#4e4cb8'
 export const lightPurple = '#7c53c3'
 export const pink = '#b93fb3'
+
+
+export const green = '#009D90';
+export const backgroundGrey = '#E9E9E9';
