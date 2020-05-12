@@ -4,7 +4,7 @@ import ViewPager from '@react-native-community/viewpager';
 import TextButton from "./TextButton";
 import Button from "./Button";
 import {connect} from "react-redux";
-import {green, red, textColor, white} from "../utils/colors";
+import {blue, green, red, textColor, white} from "../utils/colors";
 
 const SCREEN = {
   Question: 'Question',
@@ -128,6 +128,7 @@ export class Quiz extends Component {
               onPress={() => this.reset()}>
               Start Over
             </Button>
+            <TextButton btnTextStyle={{color: blue}} onPress={()=> navigation.goBack()}>Back to Deck</TextButton>
           </View>
         </ViewPager>
       </View>
