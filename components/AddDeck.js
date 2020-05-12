@@ -4,6 +4,7 @@ import Button from './Button';
 import {connect} from "react-redux";
 import {addDeck} from "../actions/index";
 import {saveDeckTitle} from "../utils/api";
+import {green, textColor, white} from "../utils/colors";
 
 export class AddDeck extends Component {
   state = {
@@ -34,7 +35,8 @@ export class AddDeck extends Component {
           <TextInput style={styles.input} value={this.state.title} onChangeText={this.handleChange}/>
         </View>
         <Button
-          btnStyle={{backgroundColor: 'gray'}}
+          btnStyle={{backgroundColor: green}}
+          btnTextStyle={{color: white}}
           onPress={this.handleOnSubmit}
           disabled={this.state.title === ''}
         >
@@ -47,14 +49,20 @@ export class AddDeck extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+
   contentBox: {
-    marginBottom: 20
+    margin: 10
   },
   title: {
     justifyContent: 'center',
     alignSelf: 'center',
-    fontSize: 30
+    fontSize: 25,
+    color: textColor
   },
   input: {
     borderWidth: 1,
@@ -62,7 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
     borderRadius: 5,
-    fontSize: 20,
+    fontSize: 15,
     height: 50
   },
 

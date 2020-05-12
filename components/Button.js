@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import {darkGray} from "../utils/colors";
+import {black, darkGray, disabledGrey, green, textColor} from "../utils/colors";
 
 export default function Button({children, onPress, btnStyle= {}, btnTextStyle = {}, disabled = false}) {
   const disabledButton = disabled ? styles.btnDisabled : {};
@@ -30,17 +30,17 @@ const styles = StyleSheet.create({
   btn:{
     width: 200,
     height: 50,
-    backgroundColor: 'red',
+    backgroundColor: green,
     borderRadius: 7,
     justifyContent: `center`,
     alignItems: `center`
   },
   btnDisabled: {
-    backgroundColor: 'gray',
+    backgroundColor: disabledGrey,
     borderColor: darkGray
   },
   btnDisabledText: {
-    color: darkGray
+    color: textColor
   }
 })
 
