@@ -1,5 +1,5 @@
-import React from 'react';
-import {Platform, StatusBar, StyleSheet, View} from 'react-native';
+import React, {Component} from 'react';
+import {Platform, StatusBar, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from "@react-navigation/stack";
 import DeckList from './components/DeckList';
@@ -13,17 +13,19 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
 import {Ionicons} from "@expo/vector-icons";
 
-import {createStore, applyMiddleware} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import {Provider} from 'react-redux';
 import reducer from './reducers/index';
-import {red, white, green} from "./utils/colors";
+import {green} from "./utils/colors";
+import {setLocalNotification} from "./utils/api";
 
 const store = createStore(
   reducer,
   applyMiddleware(thunk, logger)
 )
+
 function MobiFlashCardStatusBar({backgroundColor, ...props}) {
   return (
     <View style={{backgroundColor, height: Constants.statusBarHeight}}>
@@ -36,9 +38,9 @@ const AppStack = createStackNavigator();
 const Tabs = (Platform.OS === 'ios') ? createBottomTabNavigator() : createMaterialTopTabNavigator();
 const MyTabs = () => (
   <Tabs.Navigator
-    screenOptions={({ route }) => ({
+    screenOptions={({route}) => ({
 
-      tabBarIcon: ({ focused, color, size }) => {
+      tabBarIcon: ({focused, color, size}) => {
         let iconName;
 
         if (route.name === 'Add Deck') {
@@ -50,7 +52,7 @@ const MyTabs = () => (
         }
 
         // You can return any component that you like here!
-        return <Ionicons name={iconName} size={size} color={color} />;
+        return <Ionicons name={iconName} size={size} color={color}/>;
       },
     })}
     tabBarOptions={{
@@ -63,22 +65,29 @@ const MyTabs = () => (
   </Tabs.Navigator>
 );
 
-export default function App() {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <MobiFlashCardStatusBar
-          backgroundColor= {green}
-          barStyle="light-content"
-        />
-        <AppStack.Navigator>
-          <AppStack.Screen name="DeckList" component={MyTabs} options={{title: "Decks List", headerShown: false}}/>
-          <AppStack.Screen name="DeckDetails" component={DeckDetails} options={{title: "Deck Details"}}/>
-          <AppStack.Screen name="AddCard" component={AddCard} options={{title: "Add Card"}}/>
-          <AppStack.Screen name="Quiz" component={Quiz} options={{title: "Quiz"}}/>
-        </AppStack.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
+export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
+  render() {
+
+    return (
+      <Provider store={store}>
+        <NavigationContainer>
+          <MobiFlashCardStatusBar
+            backgroundColor={green}
+            barStyle="light-content"
+          />
+          <AppStack.Navigator>
+            <AppStack.Screen name="DeckList" component={MyTabs} options={{title: "Decks List", headerShown: false}}/>
+            <AppStack.Screen name="DeckDetails" component={DeckDetails} options={{title: "Deck Details"}}/>
+            <AppStack.Screen name="AddCard" component={AddCard} options={{title: "Add Card"}}/>
+            <AppStack.Screen name="Quiz" component={Quiz} options={{title: "Quiz"}}/>
+          </AppStack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    );
+  }
 }
 
