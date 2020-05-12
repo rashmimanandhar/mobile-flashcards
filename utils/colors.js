@@ -14,3 +14,4 @@ export const pink = '#b93fb3'
 
 export const green = '#009D90';
 export const backgroundGrey = '#E9E9E9';
+export const appBackgroundGrey = '#F5F6F7'
