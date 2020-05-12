@@ -5,7 +5,7 @@ import Button from "./Button";
 import TextButton from "./TextButton";
 import {connect} from "react-redux";
 import {removeDeck} from "../actions/index";
-import {deleteDeck} from "../utils/api";
+import {deleteDeck, clearLocalNotification, setLocalNotification} from "../utils/api";
 import {green, red, white} from "../utils/colors";
 
 export class DeckDetails extends Component {
@@ -48,9 +48,13 @@ export class DeckDetails extends Component {
           <Button
             btnStyle={{backgroundColor: white, borderWidth: 1, borderColor: green}}
             btnTextStyle={{color: green}}
-            onPress={() => navigation.push('Quiz', {
-              deck: {deck}
-            })}
+            onPress={() => {
+              navigation.push('Quiz', {
+                deck: {deck}
+              });
+              clearLocalNotification()
+                .then(setLocalNotification);
+            }}
             disabled={deck.questions.length === 0}
           >
             Start Quiz
