@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet, ScrollView} from 'react-native';
 import Deck from './Deck';
 import {connect} from "react-redux";
 import {handleInitialData} from "../actions/index";
@@ -21,6 +21,7 @@ export class DeckList extends Component {
         </View>
         :
         <View>
+          <ScrollView>
           {Object.values(decks).map(deck => {
             return (
               <TouchableOpacity
@@ -32,7 +33,7 @@ export class DeckList extends Component {
               </TouchableOpacity>
             )
           })}
-
+          </ScrollView>
         </View>
     )
   }

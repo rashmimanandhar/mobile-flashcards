@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   deckTitle: {
     fontSize: 30,
     color: green,
-    opacity: 0.5
+    opacity: 0.7
   },
   cardText: {
     fontSize: 15,

@@ -11,6 +11,7 @@ import Quiz from './components/Quiz';
 import Constants from 'expo-constants';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
+import {Ionicons} from "@expo/vector-icons";
 
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -34,7 +35,29 @@ function MobiFlashCardStatusBar({backgroundColor, ...props}) {
 const AppStack = createStackNavigator();
 const Tabs = (Platform.OS === 'ios') ? createBottomTabNavigator() : createMaterialTopTabNavigator();
 const MyTabs = () => (
-  <Tabs.Navigator>
+  <Tabs.Navigator
+    screenOptions={({ route }) => ({
+
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === 'Add Deck') {
+          iconName = focused
+            ? 'ios-add-circle'
+            : 'ios-add-circle-outline';
+        } else if (route.name === 'Deck List') {
+          iconName = focused ? 'ios-list-box' : 'ios-list';
+        }
+
+        // You can return any component that you like here!
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+    })}
+    tabBarOptions={{
+      activeTintColor: green,
+      inactiveTintColor: 'gray',
+    }}
+  >
     <Tabs.Screen name="Deck List" component={DeckList}/>
     <Tabs.Screen name="Add Deck" component={AddDeck}/>
   </Tabs.Navigator>
