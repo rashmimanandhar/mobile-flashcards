@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import {green} from "../utils/colors";
 
 export default function TextButton({children, onPress, btnTextStyle = {}}) {
   return(
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 20,
-    color: 'white',
+    color: green,
   }
 })
 

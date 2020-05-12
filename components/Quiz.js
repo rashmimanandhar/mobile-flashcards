@@ -4,8 +4,7 @@ import ViewPager from '@react-native-community/viewpager';
 import TextButton from "./TextButton";
 import Button from "./Button";
 import {connect} from "react-redux";
-import {red, white} from "../utils/colors";
-import {green} from "color-name";
+import {green, red, textColor, white} from "../utils/colors";
 
 const SCREEN = {
   Question: 'Question',
@@ -62,11 +61,11 @@ export class Quiz extends Component {
         <ViewPager ref={this.viewPager} style={styles.viewPage} initialPage={0} scrollEnabled={false}>
           {questions.map((question, index) => (
             <View style={styles.pageStyle} key={index}>
-              <View style={[styles.block, styles.questionContainer]}>
+              <View style={styles.centerContainer}>
                 <Text style={styles.questionText}>
                   {currentView === SCREEN.Question ? 'Question' : 'Answer'} {index + 1} / {questions.length}
                 </Text>
-                <View style={styles.questionWrapper}>
+                <View style={styles.centerContainer}>
                   <Text style={styles.title}>
                     {currentView === SCREEN.Question
                       ? question.question
@@ -76,14 +75,14 @@ export class Quiz extends Component {
               </View>
               {currentView === SCREEN.Question ? (
                 <TextButton
-                  txtStyle={{color: red}}
+                  btnTextStyle={{color: red}}
                   onPress={() => this.setState({currentView: SCREEN.Answer})}
                 >
                   Answer
                 </TextButton>
               ) : (
                 <TextButton
-                  txtStyle={{color: red}}
+                  btnTextStyle={{color: red}}
                   onPress={() => this.setState({currentView: SCREEN.Question})}
                 >
                   Question
@@ -91,13 +90,15 @@ export class Quiz extends Component {
               )}
               <View>
                 <Button
-                  btnStyle={{backgroundColor: green, borderColor: white}}
+                  btnStyle={{backgroundColor: green}}
+                  btnTextStyle={{color: white}}
                   onPress={() => this.handleAnswer(ANSWER.Correct)}
                 >
                   Correct
                 </Button>
                 <Button
-                  btnStyle={{backgroundColor: red, borderColor: white}}
+                  btnStyle={{backgroundColor: red}}
+                  btnTextStyle={{color: white}}
                   onPress={() => this.handleAnswer(ANSWER.Incorrect)}
                 >
                   Incorrect
@@ -111,15 +112,16 @@ export class Quiz extends Component {
               <Text style={styles.title}>Quiz Complete</Text>
             </View>
             <View style={styles.contentBox}>
-              <Text style={[styles]}>Correct Answers</Text>
-              <Text style={[styles.number]}>{this.state.correct} ({this.state.correct/questions.length*100}%)</Text>
+              <Text style={[styles.questionText, {marginBottom:5}]}>Correct Answers</Text>
+              <Text style={[styles.number, {color: green}]}>{this.state.correct} ({this.state.correct/questions.length*100}%)</Text>
             </View>
             <View style={styles.contentBox}>
-              <Text style={[styles]}>Incorrect Answers</Text>
-              <Text style={[styles.number]}>{this.state.incorrect} ({this.state.incorrect/questions.length*100}%)</Text>
+              <Text style={[styles.questionText, {marginBottom:5}]}>Incorrect Answers</Text>
+              <Text style={[styles.number, {color: red}]}>{this.state.incorrect} ({this.state.incorrect/questions.length*100}%)</Text>
             </View>
             <Button
-              btnStyle={{backgroundColor: red, borderColor: white}}
+              btnStyle={{backgroundColor: white, borderWidth:1, borderColor:green}}
+              btnTextStyle={{color: green}}
               onPress={() => this.reset()}>
               Start Over
             </Button>
@@ -134,17 +136,23 @@ export class Quiz extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  centerContainer: {
+    justifyContent:'center',
+    alignItems: 'center'
+  },
   contentBox: {
     marginBottom: 20
   },
   title: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-    fontSize: 30
+    paddingLeft: 20,
+    paddingRight:20,
+    marginBottom: 20,
+    fontSize: 25,
+    color: textColor,
+    textAlign: 'center'
   },
   number: {
-    color: 'red',
+    color: red,
     fontSize: 20,
     textAlign: 'center'
   },
@@ -155,5 +163,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  questionText:{
+    marginBottom: 20,
+    fontSize: 18,
+    color: textColor
+  }
 })
 export default connect()(Quiz);
