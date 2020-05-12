@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import {black, darkGray, disabledGrey, green, textColor} from "../utils/colors";
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {darkGray, disabledGrey, green, textColor} from "../utils/colors";
 
-export default function Button({children, onPress, btnStyle= {}, btnTextStyle = {}, disabled = false}) {
+export default function Button({children, onPress, btnStyle = {}, btnTextStyle = {}, disabled = false}) {
   const disabledButton = disabled ? styles.btnDisabled : {};
-  const disabledButtonText = disabled ?  styles.btnDisabledText : {};
-  return(
+  const disabledButtonText = disabled ? styles.btnDisabledText : {};
+  return (
     <View style={[styles.btnContainer]}>
       <TouchableOpacity style={[styles.btn, btnStyle, disabledButton]} onPress={onPress} disabled={disabled}>
         <Text style={[styles.btnText, btnTextStyle, disabledButtonText]}>{children}</Text>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white'
   },
-  btn:{
+  btn: {
     width: 200,
     height: 50,
     backgroundColor: green,

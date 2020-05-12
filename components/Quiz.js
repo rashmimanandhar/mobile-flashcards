@@ -36,18 +36,19 @@ export class Quiz extends Component {
 
 
   handleAnswer = (ans) => {
-    if(ans === ANSWER.Correct){
+    if (ans === ANSWER.Correct) {
       this.setState({correct: this.state.correct + 1})
-    } else{
+    } else {
       this.setState({incorrect: this.state.incorrect + 1})
     }
     this.move();
   }
 
   reset = () => {
-    this.setState({correct:0, incorrect: 0, page: 0});
+    this.setState({correct: 0, incorrect: 0, page: 0});
     this.viewPager.current.setPage(0);
   }
+
   render() {
 
     const {dispatch, route, navigation} = this.props;
@@ -112,15 +113,17 @@ export class Quiz extends Component {
               <Text style={styles.title}>Quiz Complete</Text>
             </View>
             <View style={styles.contentBox}>
-              <Text style={[styles.questionText, {marginBottom:5}]}>Correct Answers</Text>
-              <Text style={[styles.number, {color: green}]}>{this.state.correct} ({this.state.correct/questions.length*100}%)</Text>
+              <Text style={[styles.questionText, {marginBottom: 5}]}>Correct Answers</Text>
+              <Text
+                style={[styles.number, {color: green}]}>{this.state.correct} ({this.state.correct / questions.length * 100}%)</Text>
             </View>
             <View style={styles.contentBox}>
-              <Text style={[styles.questionText, {marginBottom:5}]}>Incorrect Answers</Text>
-              <Text style={[styles.number, {color: red}]}>{this.state.incorrect} ({this.state.incorrect/questions.length*100}%)</Text>
+              <Text style={[styles.questionText, {marginBottom: 5}]}>Incorrect Answers</Text>
+              <Text
+                style={[styles.number, {color: red}]}>{this.state.incorrect} ({this.state.incorrect / questions.length * 100}%)</Text>
             </View>
             <Button
-              btnStyle={{backgroundColor: white, borderWidth:1, borderColor:green}}
+              btnStyle={{backgroundColor: white, borderWidth: 1, borderColor: green}}
               btnTextStyle={{color: green}}
               onPress={() => this.reset()}>
               Start Over
@@ -137,7 +140,7 @@ export class Quiz extends Component {
 
 const styles = StyleSheet.create({
   centerContainer: {
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   contentBox: {
@@ -145,7 +148,7 @@ const styles = StyleSheet.create({
   },
   title: {
     paddingLeft: 20,
-    paddingRight:20,
+    paddingRight: 20,
     marginBottom: 20,
     fontSize: 25,
     color: textColor,
@@ -163,7 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  questionText:{
+  questionText: {
     marginBottom: 20,
     fontSize: 18,
     color: textColor

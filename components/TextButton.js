@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {green} from "../utils/colors";
 
 export default function TextButton({children, onPress, btnTextStyle = {}}) {
-  return(
+  return (
     <View style={[styles.btnContainer]}>
       <TouchableOpacity onPress={onPress}>
         <Text style={[styles.btnText, btnTextStyle]}>{children}</Text>

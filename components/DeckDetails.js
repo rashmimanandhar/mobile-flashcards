@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Deck from "./Deck";
 import Button from "./Button";
 import TextButton from "./TextButton";
@@ -9,14 +9,15 @@ import {deleteDeck} from "../utils/api";
 import {green, red, white} from "../utils/colors";
 
 export class DeckDetails extends Component {
-  handleOnDelete =(title) =>{
+  handleOnDelete = (title) => {
     const {navigation, dispatch} = this.props;
     dispatch(removeDeck(title));
-    deleteDeck(title).then(() =>{
+    deleteDeck(title).then(() => {
 
     });
     navigation.goBack();
   }
+
   render() {
     const {navigation, route, dispatch, decks} = this.props;
 
@@ -37,7 +38,7 @@ export class DeckDetails extends Component {
           </Button>
 
           <Button
-            btnStyle={{backgroundColor: white, borderWidth:1, borderColor:green}}
+            btnStyle={{backgroundColor: white, borderWidth: 1, borderColor: green}}
             btnTextStyle={{color: green}}
             onPress={() => navigation.push('Quiz', {
               deck: {deck}
@@ -60,8 +61,7 @@ export class DeckDetails extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-  }
+  container: {}
 })
 
 function mapStateToProps(decks) {
@@ -69,4 +69,5 @@ function mapStateToProps(decks) {
     decks
   }
 }
+
 export default connect(mapStateToProps)(DeckDetails);
