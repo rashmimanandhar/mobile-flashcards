@@ -4,6 +4,7 @@ import Button from "./Button";
 import {addCardToDeck} from "../utils/api";
 import {connect} from "react-redux";
 import {addCard} from "../actions";
+import {backgroundGrey, green, white} from "../utils/colors";
 
 export class AddCard extends Component {
   state = {
@@ -40,12 +41,12 @@ export class AddCard extends Component {
         <View style={styles.contentBox}>
           <TextInput style={styles.input} value={this.state.question} onChangeText={this.handleQuestionChange} placeholder="Enter Question"/>
         </View>
-
         <View style={styles.contentBox}>
           <TextInput style={styles.input} value={this.state.answer} onChangeText={this.handleAnswerChange} placeholder="Enter Answer"/>
         </View>
         <Button
-          btnStyle={{backgroundColor: 'blue'}}
+          btnStyle={{backgroundColor: green}}
+          btnTextStyle={{color: white}}
           onPress={this.handleOnSubmit}
           disabled={this.state.question === '' || this.state.answer === ''}
         >
@@ -58,24 +59,27 @@ export class AddCard extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-
+    flex: 1,
+    justifyContent: 'center',
   },
   contentBox: {
     marginBottom: 20
   },
   title: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-    fontSize: 30
+    fontSize: 25,
+    alignSelf: 'center'
+
   },
   input: {
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: backgroundGrey,
     backgroundColor: '#fff',
     padding: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderRadius: 5,
-    fontSize: 20,
-    height: 50
+    fontSize: 15,
+    height: 50,
   },
 
 })

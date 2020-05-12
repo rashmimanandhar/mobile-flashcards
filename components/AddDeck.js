@@ -4,7 +4,7 @@ import Button from './Button';
 import {connect} from "react-redux";
 import {addDeck} from "../actions/index";
 import {saveDeckTitle} from "../utils/api";
-import {green, textColor, white} from "../utils/colors";
+import {backgroundGrey, green, textColor, white} from "../utils/colors";
 
 export class AddDeck extends Component {
   state = {
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignSelf: 'center'
   },
 
   contentBox: {
@@ -66,9 +65,11 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: backgroundGrey,
     backgroundColor: '#fff',
     padding: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderRadius: 5,
     fontSize: 15,
     height: 50
