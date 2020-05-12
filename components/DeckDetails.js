@@ -31,7 +31,8 @@ export class DeckDetails extends Component {
             btnTextStyle={{color: white}}
             onPress={() => navigation.push('AddCard', {
               title: deckTitle
-            })}>
+            })}
+          >
             Add Card
           </Button>
 
@@ -41,6 +42,7 @@ export class DeckDetails extends Component {
             onPress={() => navigation.push('Quiz', {
               deck: {deck}
             })}
+            disabled={deck.questions.length === 0}
           >
             Start Quiz
           </Button>
