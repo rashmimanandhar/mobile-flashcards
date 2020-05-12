@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ViewPager from '@react-native-community/viewpager';
 import TextButton from "./TextButton";
 import Button from "./Button";
+import CardFlip from 'react-native-card-flip';
 import {connect} from "react-redux";
-import {blue, green, red, textColor, white} from "../utils/colors";
+import {backgroundGrey, blue, green, red, textColor, white} from "../utils/colors";
 
 const SCREEN = {
   Question: 'Question',
@@ -19,6 +20,7 @@ const ANSWER = {
 
 export class Quiz extends Component {
   viewPager = React.createRef();
+  card = React.createRef();
   state = {
     currentView: SCREEN.Question,
     correct: 0,
@@ -59,14 +61,15 @@ export class Quiz extends Component {
 
     return (
       <View style={{flex: 1}}>
-        <ViewPager ref={this.viewPager} style={styles.viewPage} initialPage={0} scrollEnabled={false}>
+        <ViewPager ref={this.viewPager} style={[styles.viewPage, styles.centerContainer]} initialPage={0} scrollEnabled={false}>
           {questions.map((question, index) => (
-            <View style={styles.pageStyle} key={index}>
+            <ScrollView  key={index} contentContainerStyle={styles.centerContainer}>
+            <View style={{marginTop: 20}}  key={index}>
               <View style={styles.centerContainer}>
                 <Text style={styles.questionText}>
                   {currentView === SCREEN.Question ? 'Question' : 'Answer'} {index + 1} / {questions.length}
                 </Text>
-                <View style={styles.centerContainer}>
+                <View style={[styles.centerContainer, styles.cardBox]}>
                   <Text style={styles.title}>
                     {currentView === SCREEN.Question
                       ? question.question
@@ -74,21 +77,14 @@ export class Quiz extends Component {
                   </Text>
                 </View>
               </View>
-              {currentView === SCREEN.Question ? (
                 <TextButton
                   btnTextStyle={{color: red}}
-                  onPress={() => this.setState({currentView: SCREEN.Answer})}
+                  onPress={() => {
+                    this.setState({currentView: currentView === SCREEN.Question ? SCREEN.Answer : SCREEN.Question});
+                  }}
                 >
-                  Answer
+                  {currentView === SCREEN.Question ?'Answer': 'Question'}
                 </TextButton>
-              ) : (
-                <TextButton
-                  btnTextStyle={{color: red}}
-                  onPress={() => this.setState({currentView: SCREEN.Question})}
-                >
-                  Question
-                </TextButton>
-              )}
               <View>
                 <Button
                   btnStyle={{backgroundColor: green}}
@@ -106,9 +102,9 @@ export class Quiz extends Component {
                 </Button>
               </View>
             </View>
-
+            </ScrollView>
           ))}
-          <View style={styles.pageStyle} key={questions.length}>
+          <View style={styles.centerContainer} key={questions.length}>
             <View style={styles.contentBox}>
               <Text style={styles.title}>Quiz Complete</Text>
             </View>
@@ -163,10 +159,29 @@ const styles = StyleSheet.create({
   viewPage: {
     flex: 1,
   },
-  pageStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  cardContainer: {
+    padding:10
   },
+  cardBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    margin: 20,
+    borderWidth: 1,
+    borderColor: backgroundGrey,
+    backgroundColor: white,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+
   questionText: {
     marginBottom: 20,
     fontSize: 18,
