@@ -33,5 +33,7 @@ To run the project
 ## Create React Native App
 
 This project was bootstrapped with [Create React Native App and Expo](https://github.com/expo/create-react-native-app). You can find more information on how to perform common tasks [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
+You can find the app here 
+`https://exp.host/@rashmi.himars/mobile-flashcards`
 
 
