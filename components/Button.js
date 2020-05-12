@@ -20,21 +20,18 @@ const styles = StyleSheet.create({
   btnContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
     margin: 10,
-    borderColor: 'blue',
-    borderRadius: 5
+
   },
   btnText: {
     fontSize: 20,
-    fontWeight: 'bold',
     color: 'white'
   },
   btn:{
     width: 200,
     height: 50,
     backgroundColor: 'red',
-    borderRadius: 5,
+    borderRadius: 7,
     justifyContent: `center`,
     alignItems: `center`
   },

@@ -6,6 +6,7 @@ import TextButton from "./TextButton";
 import {connect} from "react-redux";
 import {removeDeck} from "../actions/index";
 import {deleteDeck} from "../utils/api";
+import {green, red, white} from "../utils/colors";
 
 export class DeckDetails extends Component {
   handleOnDelete =(title) =>{
@@ -26,18 +27,17 @@ export class DeckDetails extends Component {
         <Deck deck={deck}/>
         <View style={styles.container}>
           <Button
-            btnStyle={{backgroundColor: 'white'}}
-            btnTextStyle={{color: 'black'}}
+            btnStyle={{backgroundColor: green}}
+            btnTextStyle={{color: white}}
             onPress={() => navigation.push('AddCard', {
               title: deckTitle
             })}>
-          >
             Add Card
           </Button>
 
           <Button
-            btnStyle={{backgroundColor: 'red'}}
-            btnTextStyle={{color: 'white'}}
+            btnStyle={{backgroundColor: white, borderWidth:1, borderColor:green}}
+            btnTextStyle={{color: green}}
             onPress={() => navigation.push('Quiz', {
               deck: {deck}
             })}
@@ -46,7 +46,7 @@ export class DeckDetails extends Component {
           </Button>
 
           <TextButton
-            btnTextStyle={{color: 'red'}}
+            btnTextStyle={{color: red}}
             onPress={() => this.handleOnDelete(deck.title)}
           >
             Delete Deck
