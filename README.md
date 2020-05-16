@@ -45,25 +45,25 @@ You can find the app here
 The app has been tested using iPad and Android (Pixel 3).
 
 ## Screenshots IOS
-![No Decks](assets/ios/ios-noDecks.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/ios/ios-noDecks.png" height="500"/>
 
-![Deck Details](assets/ios/ios-deckDetails.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/ios/ios-deckDetails.png" height="500"/>
 
-![Add Card](assets/ios/ios-addCard.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/ios/ios-addCard.png" height="500"/>
 
-![Start Quiz](assets/ios/ios-startQuiz.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/ios/ios-startQuiz.png" height="500"/>
 
-![Quiz Result](assets/ios/ios-result.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/ios/ios-result.png" height="500"/>
 
-![Notification](assets/ios/ios-notification.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/ios/ios-notification.png" height="500"/>
 
 ## Screenshots Android
-![Start Quiz](assets/android/android-startQuiz.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/android/android-startQuiz.png" height="500"/>
 
-![Add Deck](assets/android/android-addDeck.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/android/android-addDeck.png" height="500"/>
 
-![Quiz Result](assets/android/android-result.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/android/android-result.png" height="500"/>
 
-![Notification](assets/android/android-notification.png)
+<img src="https://github.com/rashmimanandhar/mobile-flashcards/blob/master/assets/android/android-notification.png" height="500"/>
 
 
