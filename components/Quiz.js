@@ -3,8 +3,6 @@ import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native
 import ViewPager from '@react-native-community/viewpager';
 import TextButton from "./TextButton";
 import Button from "./Button";
-import CardFlip from 'react-native-card-flip';
-import {connect} from "react-redux";
 import {backgroundGrey, blue, green, red, textColor, white} from "../utils/colors";
 
 const SCREEN = {
@@ -53,9 +51,7 @@ export class Quiz extends Component {
 
   render() {
 
-    const {dispatch, route, navigation} = this.props;
-    const title = route.params.deck.deck.title;
-    const deck = route.params.deck.deck;
+    const {route, navigation} = this.props;
     const questions = route.params.deck.deck.questions;
     const {currentView} = this.state;
 
@@ -188,4 +184,4 @@ const styles = StyleSheet.create({
     color: textColor
   }
 })
-export default connect()(Quiz);
+export default Quiz;
