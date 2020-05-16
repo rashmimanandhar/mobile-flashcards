@@ -4,7 +4,8 @@ This project is created using React Native and Redux. The main objective of this
 
 To run the project
 * install all project dependencies with `yarn install`
-* start the development server with `yarn add`
+* start the development server with `yarn start`
+* To run in ios/android devices use `expo start`
 
 ## Project Structure
 ```bash
@@ -35,5 +36,34 @@ To run the project
 This project was bootstrapped with [Create React Native App and Expo](https://github.com/expo/create-react-native-app). You can find more information on how to perform common tasks [here](https://github.com/expo/create-react-native-app/blob/master/README.md).
 You can find the app here 
 `https://exp.host/@rashmi.himars/mobile-flashcards`
+
+##Notes
+- For IOS: Ability to schedule an automatically repeated notification is deprecated on iOS and will be removed in the next SDK release.
+- IOS notification works only if app is in background
+
+## Test
+The app has been tested using iPad and Android (Pixel 3).
+
+## Screenshots IOS
+![No Decks](assets/ios/ios-noDecks.png)
+
+![Deck Details](assets/ios/ios-deckDetails.png)
+
+![Add Card](assets/ios/ios-addCard.png)
+
+![Start Quiz](assets/ios/ios-startQuiz.png)
+
+![Quiz Result](assets/ios/ios-result.png)
+
+![Notification](assets/ios/ios-notification.png)
+
+## Screenshots Android
+![Start Quiz](assets/android/android-startQuiz.png)
+
+![Add Deck](assets/android/android-addDeck.png)
+
+![Quiz Result](assets/android/android-result.png)
+
+![Notification](assets/android/android-notification.png)
 
 
